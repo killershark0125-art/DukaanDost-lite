@@ -3,6 +3,7 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const specialCharRegex = /[^A-Za-z0-9]/;
+const phoneRegex = /^03\d{9}$/;
 const allowedDomains = [
   'gmail.com',
   'outlook.com',
@@ -31,6 +32,9 @@ const register = async (req, res) => {
     }
     if (!specialCharRegex.test(password)) {
       return res.status(400).json({ message: 'Password must contain at least one special character' });
+    }
+    if (!phoneRegex.test(phone)) {
+      return res.status(400).json({ message: 'Phone must be in format 03XXXXXXXXX' });
     }
     const existing = await User.findOne({ email: email.toLowerCase() });
     if (existing) {
