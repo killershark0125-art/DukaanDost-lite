@@ -186,3 +186,35 @@ img {
     height: 3.5rem;
   }
 }
+
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 6rem);
+  padding: 24px 16px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-card h2 {
+  margin-bottom: 20px;
+}
+
+.auth-card .btn {
+  width: 100%;
+}
+
+.auth-switch {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+@media (max-width: 600px) {
+  .auth-page {
+    min-height: calc(100vh - 4.5rem);
+  }
+}
