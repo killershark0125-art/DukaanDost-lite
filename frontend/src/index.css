@@ -218,3 +218,25 @@ img {
     min-height: calc(100vh - 4.5rem);
   }
 }
+.dashboard {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.dashboard h2 {
+  margin-bottom: 20px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.dashboard-tile h3 {
+  margin-bottom: 6px;
+}
+
+.dashboard-tile:hover {
+  background: var(--white);
+}
