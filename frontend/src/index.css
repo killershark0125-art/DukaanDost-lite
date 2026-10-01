@@ -240,3 +240,91 @@ img {
 .dashboard-tile:hover {
   background: var(--white);
 }
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.page-header h2 {
+  margin-bottom: 0;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  padding: 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--cream);
+}
+
+.table-img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.table-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.table-actions .btn {
+  padding: 6px 14px;
+  font-size: 0.9rem;
+}
+
+.form-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-card h2 {
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+textarea.input {
+  resize: vertical;
+}
+.faq-heading {
+  margin: 8px 0 12px;
+}
+
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: var(--white);
+  border-radius: 8px;
+}
+
+.faq-item .btn {
+  align-self: flex-start;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+}
+
+.faq-add {
+  margin-bottom: 20px;
+}
