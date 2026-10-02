@@ -8,12 +8,13 @@ const {
 } = require('../controllers/productController');
 const { protect } = require('../middleware/auth');
 const { authorize } = require('../middleware/role');
+const { getProductReviews } = require('../controllers/reviewController');
 
 const router = express.Router();
 
 router.get('/', getProducts);
 router.get('/:id', getProductById);
-
+router.get('/:id/reviews', getProductReviews);
 router.post('/', protect, authorize('seller'), createProduct);
 router.put('/:id', protect, authorize('seller'), updateProduct);
 router.delete('/:id', protect, authorize('seller'), deleteProduct);
