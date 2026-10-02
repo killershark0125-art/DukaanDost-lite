@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
+import ReviewList from '../components/ReviewList';
+import ReviewForm from '../components/ReviewForm';
 import api from '../api/api';
 
 function ProductDetails() {
@@ -13,6 +15,9 @@ function ProductDetails() {
   const { user } = useAuth();
   const { addToCart } = useCart();
   const [added, setAdded] = useState(false);
+  const [reviews, setReviews] = useState([]);
+
+  
 
   const handleAdd = () => {
     addToCart(product);
@@ -27,6 +32,18 @@ function ProductDetails() {
       .catch(() => setError('Product not found'))
       .finally(() => setLoading(false));
   }, [id]);
+
+    useEffect(() => {
+    api
+      .get(`/products/${id}/reviews`)
+      .then((res) => setReviews(res.data))
+      .catch(() => {});
+  }, [id]);
+
+  const handleReviewAdded = (review) => {
+    setReviews([review, ...reviews]);
+    api.get(`/products/${id}`).then((res) => setProduct(res.data));
+  };
 
   if (loading) {
     return <p className="container section">Loading...</p>;
@@ -76,7 +93,9 @@ function ProductDetails() {
           </p>
           <p className="details-desc">{product.description}</p>
           <p className="details-rating">
-            {product.averageRating > 0 ? `Rating: ${product.averageRating} / 5` : 'No ratings yet'}
+            {product.averageRating > 0
+              ? `Rating: ${product.averageRating} / 5 (${reviews.length} review${reviews.length === 1 ? '' : 's'})`
+              : 'No ratings yet'}
           </p>
             {user?.role !== 'seller' && (
             <button className="btn" onClick={handleAdd} disabled={outOfStock}>
@@ -87,8 +106,16 @@ function ProductDetails() {
       </div>
 
       <div className="reviews-section">
-        <h2>Reviews</h2>
-        <p>Reviews will appear here.</p>
+        <h2>Reviews ({reviews.length})</h2>
+
+        {user?.role === 'customer' && <ReviewForm productId={id} onSubmitted={handleReviewAdded} />}
+        {!user && (
+          <p className="review-hint">
+            <Link to="/login">Log in</Link> to write a review. Only customers with a delivered order can review.
+          </p>
+        )}
+
+        <ReviewList reviews={reviews} />
       </div>
     </div>
   );

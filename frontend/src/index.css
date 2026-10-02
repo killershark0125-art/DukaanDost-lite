@@ -836,3 +836,108 @@ textarea.input {
 .chat-form .btn {
   padding: 8px 16px;
 }
+.stars {
+  color: var(--sage);
+  letter-spacing: 2px;
+  margin-left: 6px;
+}
+
+.review-form {
+  margin-bottom: 20px;
+}
+
+.review-form h3 {
+  margin-bottom: 12px;
+}
+
+.star-input {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.star-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--sage-soft);
+  cursor: pointer;
+}
+
+.star-active {
+  color: var(--forest);
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.review-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.review-date {
+  font-size: 0.85rem;
+  color: var(--sage);
+  margin-top: 6px;
+}
+
+.review-hint {
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+.sentiment {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sentiment-positive {
+  background: var(--sage-soft);
+  color: var(--forest-dark);
+}
+
+.sentiment-neutral {
+  background: #e2e0d6;
+  color: #555248;
+}
+
+.sentiment-negative {
+  background: #f1cccc;
+  color: #7a1f1f;
+}
+
+.stats-heading {
+  margin: 32px 0 12px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+}
