@@ -726,3 +726,13 @@ textarea.input {
 .not-found-btn {
   margin-top: 12px;
 }
+.order-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.order-actions .btn {
+  padding: 8px 16px;
+  font-size: 0.95rem;
+}

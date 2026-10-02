@@ -13,6 +13,7 @@ import SellerDashboard from './pages/seller/SellerDashboard';
 import ManageProducts from './pages/seller/ManageProducts';
 import ProductForm from './pages/seller/ProductForm';
 import StoreSettingsPage from './pages/seller/StoreSettingsPage';
+import SellerOrders from './pages/seller/SellerOrders';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/seller/products/new" element={<ProductForm />} />
           <Route path="/seller/products/:id/edit" element={<ProductForm />} />
           <Route path="/seller/settings" element={<StoreSettingsPage />} />
+          <Route path="/seller/orders" element={<SellerOrders />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
