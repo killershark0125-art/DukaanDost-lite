@@ -11,6 +11,8 @@ const allowedDomains = [
   'live.com',
   'yahoo.com',
   'icloud.com',
+  'test.com',
+  'example.com',
 ];
 
 const register = async (req, res) => {

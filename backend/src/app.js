@@ -8,7 +8,11 @@ const chatRoutes = require('./routes/chatRoutes');
 const app = express();
 const reviewRoutes = require('./routes/reviewRoutes');
 
-app.use(cors());
+const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
+  .split(',')
+  .map((origin) => origin.trim());
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
