@@ -15,6 +15,7 @@ import ProductForm from './pages/seller/ProductForm';
 import StoreSettingsPage from './pages/seller/StoreSettingsPage';
 import SellerOrders from './pages/seller/SellerOrders';
 import ChatWidget from './components/ChatWidget';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
