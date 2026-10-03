@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../api/api';
 import ProductCard from '../components/ProductCard';
+import Landing from '../components/landing';
 
 const toWhatsappLink = (number) => {
   const digits = number.replace(/\D/g, '');
@@ -39,6 +40,7 @@ function Home() {
 
   return (
     <>
+      <Landing />
       {settings && (
         <section className="hero">
           <div className="container">

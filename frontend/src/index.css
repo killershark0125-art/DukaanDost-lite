@@ -250,7 +250,9 @@ img {
   }
 
   .navbar-logo {
-    height: 3.5rem;
+    position: relative;
+    right: 3rem;
+    height: 5rem;
   }
 
   .menu-toggle {
@@ -1047,4 +1049,154 @@ textarea.input {
   font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 800;
+}
+/* ---------- Landing shutter ---------- */
+.landing {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.35) 0,
+      rgba(0, 0, 0, 0.35) 2px,
+      rgba(255, 255, 255, 0.09) 2px,
+      rgba(255, 255, 255, 0) 30px
+    ),
+    var(--forest-dark);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  touch-action: none;
+  overscroll-behavior: none;
+  transition: transform 0.95s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.landing-open {
+  transform: translateY(calc(-100% - 60px));
+  pointer-events: none;
+}
+
+.landing-center {
+  text-align: center;
+}
+
+.landing-title {
+  display: inline-block;
+  font-size: clamp(2.5rem, 11.5vw, 7rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--cream);
+}
+
+.landing-word,
+.landing-dost {
+  display: inline-block;
+  animation: landingDrop 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.landing-word {
+  animation-delay: 0.1s;
+}
+
+.landing-dost {
+  position: relative;
+  color: var(--sage-soft);
+  animation-delay: 0.3s;
+}
+
+.landing-lite {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.10em;
+  margin-right: 0.8em;
+  font-size: 0.26em;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--cream);
+  animation: landingDrop 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both;
+}
+
+.landing-tagline {
+  max-width: 40ch;
+  margin: clamp(2.4rem, 6vw, 3.5rem) auto 0;
+  color: var(--cream);
+  font-size: clamp(1rem, 4.2vw, 1.45rem);
+  letter-spacing: 0.02em;
+  animation: landingDrop 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.9s both;
+}
+
+.landing-scroll {
+  position: absolute;
+  right: 20px;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  color: var(--cream);
+  cursor: pointer;
+  animation: landingDrop 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.3s both;
+}
+
+.landing-scroll-text {
+  writing-mode: vertical-rl;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+
+.landing-arrow {
+  animation: landingBounce 1.6s ease-in-out 2.4s infinite;
+}
+
+.landing::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 28px;
+  width: 64px;
+  height: 4px;
+  margin: 0 auto;
+  border-radius: 999px;
+  background: var(--cream);
+  animation: landingDrop 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.1s both;
+}
+
+@keyframes landingDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-36px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes landingBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing,
+  .landing * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
