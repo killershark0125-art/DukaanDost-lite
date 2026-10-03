@@ -573,8 +573,22 @@ textarea.input {
 }
 
 .back-link {
-  display: inline-block;
-  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  padding: 8px 18px;
+  border: 2px solid var(--forest);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--forest);
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.back-link:hover {
+  background: var(--forest);
+  color: var(--white);
 }
 
 .details-layout {
