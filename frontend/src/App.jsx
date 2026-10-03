@@ -16,6 +16,7 @@ import StoreSettingsPage from './pages/seller/StoreSettingsPage';
 import SellerOrders from './pages/seller/SellerOrders';
 import ChatWidget from './components/ChatWidget';
 import ScrollToTop from './components/ScrollToTop';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
       <ChatWidget />
       
     </>

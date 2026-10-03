@@ -4,7 +4,10 @@ function ProductCard({ product }) {
   const outOfStock = product.stock === 0;
 
   return (
-    <Link to={`/products/${product._id}`} className="card product-card">
+    <Link
+      to={`/products/${product._id}`}
+      className={`card product-card ${outOfStock ? 'product-card-soldout' : ''}`}
+    >
       <img src={product.images[0]} alt={product.title} className="product-card-img" />
       <div className="product-card-body">
         <span className="badge">{product.category}</span>

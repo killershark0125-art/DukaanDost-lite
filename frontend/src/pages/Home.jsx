@@ -82,13 +82,12 @@ function Home() {
           ))}
         </div>
 
-        {loading && <p>Loading...</p>}
-        {!loading && products.length === 0 && <p>No products found.</p>}
+
 
         <div className="product-grid">
-          {products.map((p) => (
-            <ProductCard key={p._id} product={p} />
-          ))}
+          {loading
+            ? Array.from({ length: 8 }).map((_, i) => <div className="skeleton-card" key={i} />)
+            : products.map((p) => <ProductCard key={p._id} product={p} />)}
         </div>
       </div>
 
