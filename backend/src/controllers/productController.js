@@ -1,4 +1,5 @@
 const Product = require('../models/product');
+const { semanticSearch, keywordSearch } = require('../services/ai/searchService');
 
 const validateProduct = (body) => {
   const { title, description, price, stock, category, images } = body;
@@ -88,4 +89,29 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-module.exports = { getProducts, getProductById, createProduct, updateProduct, deleteProduct };
+const searchProducts = async (req, res) => {
+  const query = typeof req.query.q === 'string' ? req.query.q.trim() : '';
+
+  if (!query) {
+    return res.status(400).json({ message: 'Search query is required' });
+  }
+  if (query.length > 200) {
+    return res.status(400).json({ message: 'Search query is too long (max 200 characters)' });
+  }
+
+  try {
+    const results = await semanticSearch(query);
+    return res.json({ mode: 'semantic', query, results });
+  } catch (error) {
+    console.error('Semantic search failed, using keyword search:', error.message);
+  }
+
+  try {
+    const results = await keywordSearch(query);
+    res.json({ mode: 'keyword', query, results });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+module.exports = { getProducts, getProductById, createProduct, updateProduct, deleteProduct, searchProducts };

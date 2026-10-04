@@ -11,6 +11,8 @@ const productSchema = new mongoose.Schema({
     validate: [(arr) => arr.length > 0, 'At least one image is required'],
   },
   averageRating: { type: Number, default: 0 },
+  embedding: { type: [Number], select: false },
+  embeddingText: { type: String, select: false },
   createdAt: { type: Date, default: Date.now },
 });
 
