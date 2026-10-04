@@ -153,3 +153,8 @@ Response `200`: array of reviews for the product, newest first, each with `custo
 
 ### GET /api/reviews/stats (Seller)
 Response `200`: `{ "positive": 3, "neutral": 1, "negative": 1, "unanalyzed": 0 }`
+
+| GET | /api/products/search?q= | Public | B02 (extra) |
+### GET /api/products/search?q=shadi ke liye laal jora (bonus B02)
+Response `200`: `{ "mode": "semantic", "query": "...", "results": [ { "_id": "665f...", "title": "Red Cotton Kurta", "price": 2500, "score": 0.52 } ] }`
+Products are ranked by cosine similarity between Hugging Face multilingual embeddings. If the model is unavailable, `mode` is `"keyword"` and plain text matching is used. Errors: `400` empty or too long query.

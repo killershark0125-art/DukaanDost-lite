@@ -1399,3 +1399,40 @@ textarea.input {
     padding-bottom: 80px;
   }
 }
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.search-bar .input {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-results {
+  margin-bottom: 40px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--sage-soft);
+}
+
+.search-results-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.search-results-head h2 {
+  margin-bottom: 0;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 480px) {
+  .search-bar .btn {
+    padding: 10px 16px;
+  }
+}

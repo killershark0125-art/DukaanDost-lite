@@ -16,6 +16,12 @@ function Home() {
   const [category, setCategory] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [search, setSearch] = useState('');
+  const [searchedQuery, setSearchedQuery] = useState('');
+  const [searchResults, setSearchResults] = useState(null);
+  const [searchMode, setSearchMode] = useState('semantic');
+  const [searching, setSearching] = useState(false);
+  const [searchError, setSearchError] = useState('');
 
   useEffect(() => {
     api
@@ -37,6 +43,32 @@ function Home() {
       .catch(() => setError('Could not load products'))
       .finally(() => setLoading(false));
   }, [category]);
+
+    const handleSearch = async (e) => {
+    e.preventDefault();
+    const q = search.trim();
+    if (!q) return;
+
+    setSearching(true);
+    setSearchError('');
+    try {
+      const res = await api.get('/products/search', { params: { q } });
+      setSearchResults(res.data.results);
+      setSearchMode(res.data.mode);
+      setSearchedQuery(q);
+    } catch (err) {
+      setSearchError(err.response?.data?.message || 'Search failed. Please try again.');
+    } finally {
+      setSearching(false);
+    }
+  };
+
+  const clearSearch = () => {
+    setSearch('');
+    setSearchResults(null);
+    setSearchedQuery('');
+    setSearchError('');
+  };
 
   return (
     <>
@@ -61,6 +93,55 @@ function Home() {
 
       <div className="container section">
         {error && <p className="error-text">{error}</p>}
+
+                <form className="search-bar" onSubmit={handleSearch}>
+          <input
+            className="input"
+            type="search"
+            placeholder='Search: "shadi ke liye laal jora"'
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            maxLength={200}
+          />
+          <button className="btn" type="submit" disabled={searching || !search.trim()}>
+            {searching ? 'Searching...' : 'Search'}
+          </button>
+        </form>
+
+        {searching && (
+          <p className="review-hint">Searching... the first search can take a few seconds.</p>
+        )}
+        {searchError && <p className="error-text">{searchError}</p>}
+
+        {searchResults && (
+          <div className="search-results">
+            <div className="search-results-head">
+              <h2>
+                {searchResults.length} result{searchResults.length === 1 ? '' : 's'} for &ldquo;
+                {searchedQuery}&rdquo;
+              </h2>
+              <button type="button" className="btn btn-outline" onClick={clearSearch}>
+                Clear search
+              </button>
+            </div>
+
+            {searchMode === 'keyword' && (
+              <p className="review-hint">
+                Smart search is unavailable right now, so these are keyword matches.
+              </p>
+            )}
+
+            {searchResults.length === 0 ? (
+              <p>No products matched your search.</p>
+            ) : (
+              <div className="product-grid">
+                {searchResults.map((p) => (
+                  <ProductCard key={p._id} product={p} />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
 
         <h2>Our products</h2>
 
