@@ -100,8 +100,8 @@ const searchProducts = async (req, res) => {
   }
 
   try {
-    const results = await semanticSearch(query);
-    return res.json({ mode: 'semantic', query, results });
+    const { searchedAs, results } = await semanticSearch(query);
+    return res.json({ mode: 'semantic', query, searchedAs, results });
   } catch (error) {
     console.error('Semantic search failed, using keyword search:', error.message);
   }
