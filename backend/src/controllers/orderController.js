@@ -175,4 +175,25 @@ const cancelOrder = async (req, res) => {
   }
 };
 
-module.exports = { createOrder, getMyOrders, getAllOrders, updateOrderStatus, cancelOrder };
+const getOrderStats = async (req, res) => {
+  try {
+    const [totalOrders, pendingOrders, sales] = await Promise.all([
+      Order.countDocuments(),
+      Order.countDocuments({ status: 'Pending' }),
+      Order.aggregate([
+        { $match: { status: { $ne: 'Cancelled' } } },
+        { $group: { _id: null, total: { $sum: '$totalAmount' } } },
+      ]),
+    ]);
+
+    res.json({
+      totalSales: sales.length ? sales[0].total : 0,
+      totalOrders,
+      pendingOrders,
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+module.exports = { createOrder, getMyOrders, getAllOrders, updateOrderStatus, cancelOrder, getOrderStats };

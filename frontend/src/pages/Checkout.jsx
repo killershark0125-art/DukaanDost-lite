@@ -44,8 +44,9 @@ function Checkout() {
         items: items.map((i) => ({ product: i._id, quantity: i.quantity })),
         shippingAddress: form,
       });
-      navigate('/my-orders', { state: { placed: true } });
+      setOrderPlaced(true);
       clearCart();
+      navigate('/my-orders', { state: { placed: true } });
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong');
     } finally {
