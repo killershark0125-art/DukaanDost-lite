@@ -130,7 +130,7 @@ The full list with request bodies and example responses is in [docs/api-docs.md]
 
 ## 9. Demo Video
 
-https://PASTE-VIDEO-LINK-HERE
+https://www.youtube.com/watch?v=P_itIub-pkI
 
 ## 10. AI Tools Used During Development
 
